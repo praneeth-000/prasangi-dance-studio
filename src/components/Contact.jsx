@@ -1,12 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 import './Contact.css';
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
 
 const Contact = () => {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      "service_o1ox9pf",      // replace with EmailJS service ID
+      "template_kmm4qrd",     // replace with template ID
+      form.current,
+      "Lvb5CwdJpN1MnJO__"       // replace with EmailJS public key
+    ).then(
+      () => {
+        alert("Message sent successfully!");
+      },
+      () => {
+        alert("Failed to send message.");
+      }
+    );
+
+    e.target.reset();
+  };
+
   return (
     <section className="contact-section section" id="contact">
       <div className="container">
+
         <div className="section-header">
           <motion.h2 
             className="gradient-text"
@@ -16,6 +42,7 @@ const Contact = () => {
           >
             Get In Touch
           </motion.h2>
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -27,14 +54,16 @@ const Contact = () => {
         </div>
 
         <div className="contact-container">
+
+          {/* CONTACT INFO */}
           <motion.div 
             className="contact-info"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
+
             <h3>Contact Information</h3>
-            <p className="contact-desc">Fill out the form and our team will get back to you within 24 hours.</p>
 
             <div className="info-item">
               <MapPin className="info-icon" />
@@ -61,62 +90,68 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="info-item">
-              <div className="info-icon">📷</div>
-              <div>
-                <h4>Instagram</h4>
-                <p><a href="https://www.instagram.com/prasangidancestudio" target="_blank" rel="noreferrer" style={{color: 'var(--text-muted)', textDecoration: 'none'}}>@prasangidancestudio</a></p>
-              </div>
-            </div>
-
-            <div className="info-item">
-              <div className="info-icon">▶️</div>
-              <div>
-                <h4>YouTube</h4>
-                <p><a href="https://youtube.com/@PrasangiDanceStudio" target="_blank" rel="noreferrer" style={{color: 'var(--text-muted)', textDecoration: 'none'}}>@PrasangiDanceStudio</a></p>
-              </div>
-            </div>
-            
-            <div className="contact-shapes">
-              <div className="shape shape-1"></div>
-              <div className="shape shape-2"></div>
-            </div>
           </motion.div>
 
+
+          {/* CONTACT FORM */}
           <motion.div 
             className="contact-form-wrapper"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
           >
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+
+            <form ref={form} className="contact-form" onSubmit={sendEmail}>
+
               <div className="form-group">
-                <label htmlFor="name">Full Name</label>
-                <input type="text" id="name" placeholder="John Doe" />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input type="email" id="email" placeholder="john@example.com" />
+                <label>Full Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="John Doe"
+                  required
+                />
               </div>
 
               <div className="form-group">
-                <label htmlFor="subject">Subject</label>
-                <input type="text" id="subject" placeholder="Class Inquiry" />
+                <label>Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="john@example.com"
+                  required
+                />
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea id="message" rows="5" placeholder="Tell us how we can help..."></textarea>
+                <label>Subject</label>
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Class Inquiry"
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Message</label>
+                <textarea
+                  name="message"
+                  rows="5"
+                  placeholder="Tell us how we can help..."
+                  required
+                ></textarea>
               </div>
 
               <button type="submit" className="btn btn-primary submit-btn">
                 Send Message
               </button>
+
             </form>
+
           </motion.div>
+
         </div>
+
       </div>
     </section>
   );
