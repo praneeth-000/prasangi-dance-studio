@@ -1,0 +1,114 @@
+.navbar {
+  width: 100%;
+  padding: 15px 8%;
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* LOGO */
+.logo img {
+  height: 45px;
+  width: auto;
+  max-width: 100%;
+  animation: logoFloat 4s ease-in-out infinite, logoSway 4s ease-in-out infinite, logoGlow 4s ease-in-out infinite;
+}
+
+/* NAV LINKS */
+.navbar ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.navbar ul li {
+  font-weight: 500;
+}
+
+/* Anchor styling */
+.navbar ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #ff2e2e;
+}
+
+.navbar ul li a:visited {
+  color: #ffffff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 5%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .logo img {
+    height: 35px;
+  }
+
+  .navbar ul {
+    gap: 15px;
+    font-size: 13px;
+    justify-content: center;
+  }
+}
+
+/* FLOAT UP-DOWN */
+@keyframes logoFloat {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* SUBTLE DANCER SWAY */
+@keyframes logoSway {
+  0% {
+    rotate: -1.5deg;
+  }
+
+  50% {
+    rotate: 1.5deg;
+  }
+
+  100% {
+    rotate: -1.5deg;
+  }
+}
+
+/* SOFT GLOW */
+@keyframes logoGlow {
+  0% {
+    filter: drop-shadow(0 0 0px rgba(255, 46, 46, 0.2));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 8px rgba(255, 46, 46, 0.6));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 0px rgba(255, 46, 46, 0.2));
+  }
+}

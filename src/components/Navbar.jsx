@@ -1,0 +1,29 @@
+import './Navbar.css'
+
+function Navbar() {
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <nav className="navbar">
+      <div className="logo">
+        <img src="/logo.png" alt="Prasangi Dance Studio" />
+      </div>
+
+      <ul className="nav-links">
+        <li><a href="#home" onClick={(e) => scrollToSection(e, 'home')}>Home</a></li>
+        <li><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>About</a></li>
+        <li><a href="#styles" onClick={(e) => scrollToSection(e, 'styles')}>Styles</a></li>
+        <li><a href="#gallery" onClick={(e) => scrollToSection(e, 'gallery')}>Gallery</a></li>
+        <li><a href="#contact" onClick={(e) => scrollToSection(e, 'contact')}>Contact</a></li>
+      </ul>
+    </nav>
+  )
+}
+
+export default Navbar

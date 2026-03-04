@@ -1,0 +1,121 @@
+.pricing-section {
+  background-color: #0d0d0d;
+  padding: 80px 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+}
+
+.pricing-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pricing-card.popular {
+  background: linear-gradient(180deg, rgba(124,77,255,0.05) 0%, rgba(255,51,102,0.05) 100%);
+  border-color: rgba(255, 51, 102, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(255, 51, 102, 0.3);
+  white-space: nowrap;
+}
+
+.pricing-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.price {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.currency {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.amount {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.period {
+  font-size: 1rem;
+  color: var(--text-muted);
+  align-self: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.features-list {
+  list-style: none;
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.check-icon {
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .pricing-section {
+    padding: 60px 5%;
+  }
+
+  .pricing-card.popular {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
