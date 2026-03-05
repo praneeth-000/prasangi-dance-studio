@@ -48,6 +48,19 @@
   color: #ffffff;
 }
 
+.admin-nav-link {
+  background: rgba(255, 46, 46, 0.1);
+  border: 1px solid rgba(255, 46, 46, 0.3);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.admin-nav-link:hover {
+  background: rgba(255, 46, 46, 0.2);
+  border-color: rgba(255, 46, 46, 0.5);
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
   .navbar {

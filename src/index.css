@@ -1,8 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-
+/* Root colors for website */
 :root {
   --primary-color: #ff3366;
   --secondary-color: #7c4dff;
@@ -12,21 +17,29 @@ html {
   --font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Default body (neutral for admin panel) */
 body {
   font-family: var(--font-family);
-  background-color: var(--bg-dark);
-  color: var(--text-light);
+  background-color: #f3f4f6;
+  color: #111827;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Typography elements */
+/* Website dark theme wrapper */
+.website-theme {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* Typography */
 h1,
 h2,
 h3,
@@ -37,7 +50,7 @@ h6 {
   line-height: 1.2;
 }
 
-/* Modern Gradient Text */
+/* Gradient text */
 .gradient-text {
   background: linear-gradient(
     135deg,
@@ -50,7 +63,7 @@ h6 {
   color: transparent;
 }
 
-/* Layout utilities */
+/* Layout helpers */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -61,36 +74,17 @@ h6 {
   padding: 6rem 0;
 }
 
-/* Custom Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
-::-webkit-scrollbar-track {
-  background: var(--bg-dark);
-}
+
 ::-webkit-scrollbar-thumb {
-  background: var(--secondary-color);
-  border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-color);
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  background: #c7c7c7;
+  border-radius: 10px;
 }
 
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-  background-color: #000;
-  font-family: 'Poppins', sans-serif;
-}
-
-section {
-  width: 100%;
-}
+/* Links */
 a {
   color: inherit;
   text-decoration: none;

@@ -1,5 +1,5 @@
+import { Link } from 'react-router-dom';
 import './Navbar.css'
-
 function Navbar() {
   const scrollToSection = (e, id) => {
     e.preventDefault();
@@ -21,6 +21,7 @@ function Navbar() {
         <li><a href="#styles" onClick={(e) => scrollToSection(e, 'styles')}>Styles</a></li>
         <li><a href="#gallery" onClick={(e) => scrollToSection(e, 'gallery')}>Gallery</a></li>
         <li><a href="#contact" onClick={(e) => scrollToSection(e, 'contact')}>Contact</a></li>
+        <li><Link to="/admin/login" className="admin-nav-link">Admin</Link></li>
       </ul>
     </nav>
   )
