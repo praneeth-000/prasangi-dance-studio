@@ -7,11 +7,12 @@ import {
   CreditCard,
   Search,
   Plus,
-  Users
+  Users,
+  RefreshCw
 } from "lucide-react";
 
 import { db } from "../../firebase";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, updateDoc, addDoc } from "firebase/firestore";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -38,6 +39,44 @@ const Students = () => {
 
     fetchStudents();
   }, []);
+
+  const handleRenew = async (student) => {
+    if (window.confirm(`Renew membership for ${student.name}?`)) {
+      try {
+        const newExpiry = new Date(student.expiryDate);
+        if (isNaN(newExpiry.getTime())) {
+          alert("Invalid current expiry date.");
+          return;
+        }
+        newExpiry.setDate(newExpiry.getDate() + 30);
+
+        await updateDoc(doc(db, "students", student.id), {
+          expiryDate: newExpiry
+        });
+
+        await addDoc(collection(db, "students", student.id, "payments"), {
+          amount: student.fee || 0,
+          date: new Date()
+        });
+
+        // Update local state
+        setStudents((prev) =>
+          prev.map((s) => {
+            if (s.id === student.id) {
+              return {
+                ...s,
+                expiryDate: newExpiry.toISOString().split("T")[0]
+              };
+            }
+            return s;
+          })
+        );
+      } catch (error) {
+        console.error("Error renewing student:", error);
+        alert("Failed to renew student.");
+      }
+    }
+  };
 
   const handleDelete = async (id) => {
     if (window.confirm("Delete this student?")) {
@@ -282,10 +321,19 @@ const Students = () => {
 
                         <div className="flex justify-end gap-2">
 
+                          <button
+                            onClick={() => handleRenew(student)}
+                            title="Renew for 30 days"
+                            className="p-2 text-amber-600 bg-amber-50 hover:bg-amber-100 rounded-lg border"
+                          >
+                            <RefreshCw size={16} />
+                          </button>
+
                           <a
-                            href={`https://wa.me/91${student.phone}`}
+                            href={`https://wa.me/91${student.phone}?text=${encodeURIComponent(`Hi ${student.name}, your dance class membership at Prasangi Dance Studio will expire on ${student.expiryDate}. Please renew your membership to continue attending classes.`)}`}
                             target="_blank"
                             rel="noreferrer"
+                            title="Send WhatsApp Reminder"
                             className="p-2 text-emerald-600 bg-emerald-50 hover:bg-emerald-100 rounded-lg border"
                           >
                             <MessageSquare size={16} />
@@ -293,6 +341,7 @@ const Students = () => {
 
                           <Link
                             to={`/admin/students/${student.id}/payments`}
+                            title="View Payments"
                             className="p-2 text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg border"
                           >
                             <CreditCard size={16} />
@@ -300,6 +349,7 @@ const Students = () => {
 
                           <Link
                             to={`/admin/students/edit/${student.id}`}
+                            title="Edit Student"
                             className="p-2 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg border"
                           >
                             <Edit size={16} />
@@ -307,6 +357,7 @@ const Students = () => {
 
                           <button
                             onClick={() => handleDelete(student.id)}
+                            title="Delete Student"
                             className="p-2 text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-lg border"
                           >
                             <Trash2 size={16} />

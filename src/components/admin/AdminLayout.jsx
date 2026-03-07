@@ -54,6 +54,12 @@ function AdminLayout() {
             </NavLink>
 
         </nav>
+        <a
+          href="/"
+          className="flex items-center justify-center gap-2 bg-gray-200 text-gray-800 px-3 py-2 rounded w-full mb-3 hover:bg-gray-300"
+        >
+          ← Go to Website
+        </a>
 
         <div className="mt-auto p-4 border-t">
 
