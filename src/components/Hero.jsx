@@ -58,7 +58,7 @@ function Hero() {
   return (
     <section id="home" className="hero">
       <div className="hero-content">
-        <h1>
+        <h1 className="brand-title">
           Prasangi Dance Studio <span>& Fitness Center</span>
         </h1>
 

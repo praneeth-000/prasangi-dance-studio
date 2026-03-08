@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -48,6 +49,12 @@ h5,
 h6 {
   font-weight: 700;
   line-height: 1.2;
+}
+
+.brand-title {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 /* Gradient text */

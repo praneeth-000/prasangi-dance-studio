@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="container footer-container">
         <div className="footer-col">
-          <h2 className="gradient-text footer-brand">Prasangi</h2>
+          <h2 className="gradient-text footer-brand brand-title">Prasangi</h2>
           <p className="footer-desc">
             Elevating the art of dance. Join our community and discover the rhythm within.
           </p>

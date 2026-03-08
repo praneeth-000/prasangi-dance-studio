@@ -11,10 +11,17 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="logo">
-        <img src="/logo.png" alt="Prasangi Dance Studio" />
-      </div>
+      <div className="flex items-center gap-3">
+        <img
+          src="/logo1.png"
+          alt="Prasangi Dance Studio"
+          className="w-12 h-12 rounded-full object-cover shadow-[0_0_20px_rgba(255,0,0,0.6)] hover:scale-110 transition duration-300"
+        />
 
+        <span className="text-xl font-bold text-white brand-title">
+          Prasangi Dance Studio
+        </span>
+      </div>
       <ul className="nav-links">
         <li><a href="#home" onClick={(e) => scrollToSection(e, 'home')}>Home</a></li>
         <li><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>About</a></li>
