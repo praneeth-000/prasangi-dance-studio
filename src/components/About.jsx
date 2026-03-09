@@ -34,8 +34,12 @@ return ( <section className="about-section section" id="about"> <div className="
         About Prasangi Dance Studio & Fitness Center
       </h2>
 
-      <p>
+      <p className="text-gray-100 drop-shadow-sm leading-relaxed">
         Prasangi Dance Studio and Fitness Center is a vibrant space dedicated to nurturing talent, creativity, and confidence through dance and fitness. Located in Jammikunta, our studio offers professional training in classical and modern dance styles for students of all age groups. From the elegance of Kuchipudi and Bharatanatyam to the energy of Hip Hop and Break Dance, we blend tradition with contemporary expression.
+      </p>
+
+      <p className="mt-4 text-gray-100 drop-shadow-sm leading-relaxed">
+        This dance studio is officially certified and licensed. Click the <a href="/placeholder-license.jpg" target="_blank" rel="noopener noreferrer" className="text-pink-500 underline font-bold hover:text-pink-400 transition-colors">License</a> to view.
       </p>
 
     </motion.div>

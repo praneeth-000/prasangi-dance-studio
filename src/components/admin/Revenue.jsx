@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, onSnapshot, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 
 import RevenueChart from "./RevenueChart";
@@ -11,7 +11,7 @@ const Revenue = () => {
 
   useEffect(() => {
 
-    const loadRevenue = async () => {
+    const unsubscribe = onSnapshot(collection(db, "students"), async (studentsSnapshot) => {
 
       let total = 0;
       let thisMonth = 0;
@@ -19,9 +19,24 @@ const Revenue = () => {
       const currentMonth = new Date().getMonth();
       const currentYear = new Date().getFullYear();
 
-      const studentsSnapshot = await getDocs(collection(db, "students"));
-
       for (const studentDoc of studentsSnapshot.docs) {
+
+        const student = studentDoc.data();
+        const baseFee = Number(student.fee) || 0;
+        
+        let date;
+        if (student.startDate && typeof student.startDate.toDate === 'function') {
+            date = student.startDate.toDate();
+        } else if (student.startDate) {
+            date = new Date(student.startDate);
+        }
+
+        if (date && baseFee) {
+          total += baseFee;
+          if (date.getMonth() === currentMonth && date.getFullYear() === currentYear) {
+            thisMonth += baseFee;
+          }
+        }
 
         const paymentsSnapshot = await getDocs(
           collection(db, "students", studentDoc.id, "payments")
@@ -30,16 +45,15 @@ const Revenue = () => {
         paymentsSnapshot.docs.forEach(doc => {
 
           const payment = doc.data();
-
           if (!payment.date) return;
 
-          const date = payment.date.toDate();
+          const pDate = payment.date.toDate ? payment.date.toDate() : new Date(payment.date);
 
           total += payment.amount;
 
           if (
-            date.getMonth() === currentMonth &&
-            date.getFullYear() === currentYear
+            pDate.getMonth() === currentMonth &&
+            pDate.getFullYear() === currentYear
           ) {
             thisMonth += payment.amount;
           }
@@ -51,9 +65,9 @@ const Revenue = () => {
       setTotalRevenue(total);
       setMonthRevenue(thisMonth);
 
-    };
+    });
 
-    loadRevenue();
+    return () => unsubscribe();
 
   }, []);
 

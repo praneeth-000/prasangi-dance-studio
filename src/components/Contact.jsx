@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Youtube } from 'lucide-react';
 import './Contact.css';
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
@@ -70,25 +70,41 @@ return ( <section className="contact-section section" id="contact"> <div classNa
         <div className="info-item">
           <MapPin className="info-icon" />
           <div>
-            <h4>Location</h4>
-            <p>Jammikunta</p>
+            <h4 className="text-white">Location</h4>
+            <p className="text-gray-200">Jammikunta</p>
           </div>
         </div>
 
         <div className="info-item">
           <Phone className="info-icon" />
           <div>
-            <h4>Phone</h4>
-            <p>9573551643</p>
-            <p>9573831643</p>
+            <h4 className="text-white">Phone</h4>
+            <p className="text-gray-200">9573551643</p>
+            <p className="text-gray-200">9573831643</p>
           </div>
         </div>
 
         <div className="info-item">
           <Mail className="info-icon" />
           <div>
-            <h4>Email</h4>
-            <p>prasangidancestudio@gmail.com</p>
+            <h4 className="text-white">Email</h4>
+            <p className="text-gray-200">prasangidancestudio@gmail.com</p>
+          </div>
+        </div>
+
+        <div className="info-item mt-4">
+          <Instagram className="info-icon" />
+          <div>
+            <h4 className="text-white">Instagram</h4>
+            <p><a href="https://www.instagram.com/prasangidancestudio?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:text-pink-400 transition-colors">@prasangidancestudio</a></p>
+          </div>
+        </div>
+
+        <div className="info-item">
+          <Youtube className="info-icon" />
+          <div>
+            <h4 className="text-white">YouTube</h4>
+            <p><a href="https://www.youtube.com/@PrasangiDanceStudio" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:text-red-400 transition-colors">@PrasangiDanceStudio</a></p>
           </div>
         </div>
 
@@ -106,7 +122,7 @@ return ( <section className="contact-section section" id="contact"> <div classNa
         <form ref={form} className="contact-form" onSubmit={sendEmail}>
 
           <div className="form-group">
-            <label>Full Name</label>
+            <label className="text-white font-medium drop-shadow-sm">Full Name</label>
             <input
               type="text"
               name="name"
@@ -116,7 +132,7 @@ return ( <section className="contact-section section" id="contact"> <div classNa
           </div>
 
           <div className="form-group">
-            <label>Email Address</label>
+            <label className="text-white font-medium drop-shadow-sm">Email Address</label>
             <input
               type="email"
               name="email"
@@ -126,7 +142,7 @@ return ( <section className="contact-section section" id="contact"> <div classNa
           </div>
 
           <div className="form-group">
-            <label>Subject</label>
+            <label className="text-white font-medium drop-shadow-sm">Subject</label>
             <input
               type="text"
               name="subject"
@@ -135,7 +151,7 @@ return ( <section className="contact-section section" id="contact"> <div classNa
           </div>
 
           <div className="form-group">
-            <label>Message</label>
+            <label className="text-white font-medium drop-shadow-sm">Message</label>
             <textarea
               name="message"
               rows="5"

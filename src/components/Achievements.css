@@ -1,4 +1,4 @@
-.gallery-section {
+.achievements-section {
 background-color: var(--bg-dark);
 display: flex;
 flex-direction: column;
@@ -9,7 +9,7 @@ overflow-x: hidden;
 padding: 80px 0;
 }
 
-.gallery-container {
+.achievements-container {
 width: 100%;
 max-width: 1200px;
 margin: 0 auto;
@@ -17,20 +17,20 @@ padding: 0 5%;
 box-sizing: border-box;
 }
 
-.gallery-grid {
+.achievements-grid {
 display: grid;
 grid-template-columns: repeat(4, 1fr);
 gap: 1.5rem;
 width: 100%;
 }
 
-.gallery-item-wrapper {
+.achievements-item-wrapper {
 width: 100%;
 aspect-ratio: 1 / 1;
 display: block;
 }
 
-.gallery-item {
+.achievements-item {
 width: 100%;
 height: 100%;
 position: relative;
@@ -43,12 +43,12 @@ transition: box-shadow 0.4s ease, transform 0.4s ease;
 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.gallery-item:hover {
+.achievements-item:hover {
 box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(229, 9, 20, 0.3);
 transform: translateY(-5px);
 }
 
-.gallery-item img {
+.achievements-item img {
 width: 100%;
 height: 100%;
 object-fit: cover;
@@ -56,11 +56,11 @@ transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 display: block;
 }
 
-.gallery-item:hover img {
+.achievements-item:hover img {
 transform: scale(1.1);
 }
 
-.gallery-overlay {
+.achievements-overlay {
 position: absolute;
 top: 0;
 left: 0;
@@ -75,11 +75,11 @@ transition: opacity 0.4s ease;
 pointer-events: none;
 }
 
-.gallery-item:hover .gallery-overlay {
+.achievements-item:hover .achievements-overlay {
 opacity: 1;
 }
 
-.gallery-overlay span {
+.achievements-overlay span {
 color: white;
 font-weight: 600;
 font-size: 1.1rem;
@@ -92,11 +92,11 @@ backdrop-filter: blur(4px);
 pointer-events: auto;
 }
 
-.gallery-overlay span:hover {
+.achievements-overlay span:hover {
 background-color: rgba(255, 255, 255, 0.1);
 }
 
-.gallery-item:hover .gallery-overlay span {
+.achievements-item:hover .achievements-overlay span {
 transform: translateY(0);
 }
 
@@ -157,7 +157,7 @@ transform: scale(1.1) rotate(90deg);
 /* Responsive */
 
 @media (max-width: 992px) {
-.gallery-grid {
+.achievements-grid {
 grid-template-columns: repeat(2, 1fr);
 gap: 1.5rem;
 }
@@ -175,25 +175,25 @@ margin-top: 30px;
 }
 
 @media (max-width: 576px) {
-.gallery-section {
+.achievements-section {
 padding: 60px 0;
 }
 
-.gallery-container {
+.achievements-container {
 padding: 0 8%;
 }
 
-.gallery-grid {
+.achievements-grid {
 grid-template-columns: 1fr;
 gap: 2rem;
 }
 
-.gallery-overlay {
+.achievements-overlay {
 background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
 opacity: 1;
 }
 
-.gallery-overlay span {
+.achievements-overlay span {
 display: none;
 }
 }

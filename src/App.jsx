@@ -1,18 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import Revenue from "./components/admin/Revenue";
-// Main Website Components
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import DanceStyles from './components/DanceStyles'
-import Master from './components/Master'
-import Gallery from './components/Gallery'
-import Pricing from './components/Pricing'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import WhatsAppButton from './components/WhatsAppButton'
-import ScrollTopButton from './components/ScrollTopButton'
+
+// Layout
+import Layout from './components/Layout'
+
+// Pages
+import Home from './pages/Home'
+import AboutPage from './pages/About'
+import StylesPage from './pages/Styles'
+import MastersPage from './pages/Masters'
+import AchievementsPage from './pages/Achievements'
+import ContactPage from './pages/Contact'
 
 // Admin Components
 import AdminLayout from './components/admin/AdminLayout'
@@ -23,29 +22,19 @@ import AddStudent from './components/admin/AddStudent'
 import EditStudent from './components/admin/EditStudent'
 import PaymentHistory from './components/admin/PaymentHistory'
 
-function MainWebsite() {
-  return (
-    <>
-      <Navbar />
-      <Hero />
-      <About />
-      <DanceStyles />
-      <Master />
-      <Gallery />
-      <Pricing />
-      <Contact />
-      <Footer />
-      <WhatsAppButton />
-      <ScrollTopButton />
-    </>
-  )
-}
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainWebsite />} />
+        {/* Main Website Routes */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="styles" element={<StylesPage />} />
+          <Route path="masters" element={<MastersPage />} />
+          <Route path="achievements" element={<AchievementsPage />} />
+          <Route path="contact" element={<ContactPage />} />
+        </Route>
         
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />

@@ -11,7 +11,7 @@ import {
 } from "chart.js";
 
 import { db } from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, onSnapshot, getDocs } from "firebase/firestore";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -22,7 +22,7 @@ const RevenueChart = () => {
 
   useEffect(() => {
 
-    const loadRevenue = async () => {
+    const unsubscribe = onSnapshot(collection(db, "students"), async (studentsSnapshot) => {
 
       const today = new Date();
       const currentYear = today.getFullYear();
@@ -32,23 +32,32 @@ const RevenueChart = () => {
       let currentYearTotal = 0;
 
       const months = {
-        Jan: 0,
-        Feb: 0,
-        Mar: 0,
-        Apr: 0,
-        May: 0,
-        Jun: 0,
-        Jul: 0,
-        Aug: 0,
-        Sep: 0,
-        Oct: 0,
-        Nov: 0,
-        Dec: 0
+        Jan: 0, Feb: 0, Mar: 0, Apr: 0, May: 0, Jun: 0,
+        Jul: 0, Aug: 0, Sep: 0, Oct: 0, Nov: 0, Dec: 0
       };
 
-      const studentsSnapshot = await getDocs(collection(db, "students"));
-
       for (const studentDoc of studentsSnapshot.docs) {
+
+        const student = studentDoc.data();
+        const baseFee = Number(student.fee) || 0;
+        
+        let date;
+        if (student.startDate && typeof student.startDate.toDate === 'function') {
+            date = student.startDate.toDate();
+        } else if (student.startDate) {
+            date = new Date(student.startDate);
+        }
+
+        if (date && baseFee && date.getFullYear() === currentYear) {
+            const m = date.toLocaleString("default", { month: "short" });
+            if (months[m] !== undefined) {
+               months[m] += baseFee;
+            }
+            currentYearTotal += baseFee;
+            if (date.getMonth() === currentMonth) {
+              currentMonthTotal += baseFee;
+            }
+        }
 
         const paymentsSnapshot = await getDocs(
           collection(db, "students", studentDoc.id, "payments")
@@ -57,20 +66,19 @@ const RevenueChart = () => {
         paymentsSnapshot.docs.forEach(doc => {
 
           const payment = doc.data();
-
           if (!payment.date) return;
 
-          const date = payment.date.toDate();
+          const pDate = payment.date.toDate ? payment.date.toDate() : new Date(payment.date);
 
-          const month = date.toLocaleString("default", { month: "short" });
-
-          months[month] += payment.amount;
-
-          if (date.getFullYear() === currentYear) {
-            currentYearTotal += payment.amount;
-            if (date.getMonth() === currentMonth) {
-              currentMonthTotal += payment.amount;
-            }
+          if (pDate.getFullYear() === currentYear) {
+             const m = pDate.toLocaleString("default", { month: "short" });
+             if (months[m] !== undefined) {
+                months[m] += payment.amount;
+             }
+             currentYearTotal += payment.amount;
+             if (pDate.getMonth() === currentMonth) {
+                 currentMonthTotal += payment.amount;
+             }
           }
 
         });
@@ -91,9 +99,9 @@ const RevenueChart = () => {
         ]
       });
 
-    };
+    });
 
-    loadRevenue();
+    return () => unsubscribe();
 
   }, []);
 

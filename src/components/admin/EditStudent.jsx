@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { db } from '../../firebase';
+import { doc, getDoc, updateDoc, Timestamp } from 'firebase/firestore';
 
 const EditStudent = () => {
   const { id } = useParams();
@@ -7,6 +9,7 @@ const EditStudent = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    gender: '',
     guardianName: '',
     guardianPhone: '',
     batch: '',
@@ -17,32 +20,81 @@ const EditStudent = () => {
   });
 
   useEffect(() => {
-    const stored = localStorage.getItem('prasangi_students');
-    if (stored) {
-      const students = JSON.parse(stored);
-      const student = students.find(s => s.id === id);
-      if (student) {
-        setFormData(student);
-      } else {
-        alert("Student not found!");
+    const fetchStudent = async () => {
+      try {
+        const docRef = doc(db, 'students', id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          
+          const safeDateString = (dateVal) => {
+            if (!dateVal) return '';
+            if (typeof dateVal.toDate === 'function') return dateVal.toDate().toISOString().split('T')[0];
+            if (dateVal instanceof Date) return dateVal.toISOString().split('T')[0];
+            if (typeof dateVal === 'string') return dateVal.split('T')[0];
+            return '';
+          };
+
+          setFormData({
+            ...data,
+            name: data.name || '',
+            phone: data.phone || '',
+            gender: data.gender || '',
+            guardianName: data.guardianName || '',
+            guardianPhone: data.guardianPhone || '',
+            batch: data.batch || '',
+            fee: data.fee || '',
+            notes: data.notes || '',
+            startDate: safeDateString(data.startDate),
+            expiryDate: safeDateString(data.expiryDate),
+          });
+        } else {
+          alert("Student not found!");
+          navigate('/admin/students');
+        }
+      } catch (error) {
+        console.error("Error fetching student Details", error);
+        alert("Failed to load student.");
         navigate('/admin/students');
       }
-    }
+    };
+    
+    fetchStudent();
   }, [id, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    const stored = localStorage.getItem('prasangi_students');
-    if (stored) {
-      let students = JSON.parse(stored);
-      // Map to update the specific student
-      students = students.map(s => s.id === id ? { ...formData, fee: Number(formData.fee) } : s);
-      localStorage.setItem('prasangi_students', JSON.stringify(students));
+    try {
+      const docRef = doc(db, 'students', id);
+      const updateData = {
+        name: formData.name || '',
+        phone: formData.phone || '',
+        gender: formData.gender || '',
+        guardianName: formData.guardianName || '',
+        guardianPhone: formData.guardianPhone || '',
+        batch: formData.batch || '',
+        fee: Number(formData.fee) || 0,
+        notes: formData.notes || ''
+      };
+
+      if (formData.startDate) {
+        updateData.startDate = Timestamp.fromDate(new Date(formData.startDate));
+      }
+      if (formData.expiryDate) {
+        updateData.expiryDate = Timestamp.fromDate(new Date(formData.expiryDate));
+      }
+
+      await updateDoc(docRef, updateData);
+      alert("Student updated successfully!");
+    } catch(error) {
+       console.error("Error updating student:", error);
+       alert("Failed to update student.");
     }
     
     navigate('/admin/students');
@@ -68,21 +120,33 @@ const EditStudent = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               <div className="space-y-1.5">
-                <label className="block text-sm font-semibold text-gray-700">Student Name</label>
+                <label className="block text-sm font-semibold text-gray-700">Student Name *</label>
                 <input
-                  type="text" value={formData.name} disabled
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-100/50 text-gray-500 outline-none text-sm cursor-not-allowed shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                  type="text" name="name" required value={formData.name} onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="block text-sm font-semibold text-gray-700">Student Phone</label>
+                <label className="block text-sm font-semibold text-gray-700">Student Phone *</label>
                 <input
-                  type="text" value={formData.phone} disabled
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-100/50 text-gray-500 outline-none text-sm cursor-not-allowed shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                  type="text" name="phone" required value={formData.phone} onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                 />
               </div>
 
               {/* Editable Fields */}
+              <div className="space-y-1.5 md:col-span-2">
+                <label className="block text-sm font-semibold text-gray-700">Gender *</label>
+                <select
+                  name="gender" required value={formData.gender || ''} onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)] appearance-none"
+                >
+                  <option value="" disabled>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+
               <div className="space-y-1.5">
                 <label className="block text-sm font-semibold text-gray-700">Batch Name *</label>
                 <input

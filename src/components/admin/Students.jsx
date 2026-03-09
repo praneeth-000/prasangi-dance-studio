@@ -227,6 +227,7 @@ const Students = () => {
             <thead>
               <tr className="bg-gray-50 border-b text-[11px] font-bold text-gray-500 uppercase tracking-widest">
                 <th className="px-6 py-4">Name</th>
+                <th className="px-6 py-4">Gender</th>
                 <th className="px-6 py-4">Batch</th>
                 <th className="px-6 py-4">Phone</th>
                 <th className="px-6 py-4">Fee</th>
@@ -275,6 +276,10 @@ const Students = () => {
 
                       <td className="px-6 py-4 font-semibold text-gray-900 text-sm">
                         {student.name}
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-gray-600 font-medium">
+                        {student.gender || "-"}
                       </td>
 
                       <td className="px-6 py-4">
@@ -330,12 +335,18 @@ const Students = () => {
                           </button>
 
                           <a
-                            href={`https://wa.me/91${student.phone}?text=${encodeURIComponent(`Hi ${student.name}, your dance class membership at Prasangi Dance Studio will expire on ${student.expiryDate}. Please renew your membership to continue attending classes.`)}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            title="Send WhatsApp Reminder"
-                            className="p-2 text-emerald-600 bg-emerald-50 hover:bg-emerald-100 rounded-lg border"
-                          >
+                            href={`https://wa.me/91${student.phone}?text=${encodeURIComponent(
+                            `Hello ${student.name},Your dance class membership at Prasangi Dance Studio is expiring soon.
+Please send the renewal payment to this number: 9573551643.
+After making the payment, kindly send the payment screenshot to the same number for confirmation.
+Thank you!
+Prasangi Dance Studio`
+                            )}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="p-2 text-emerald-600 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-colors border border-emerald-100/50"
+                              title="Send Renewal Reminder"
+                            >
                             <MessageSquare size={16} />
                           </a>
 

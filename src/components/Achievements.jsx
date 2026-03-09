@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import './Gallery.css';
+import './Achievements.css';
 
 const images = [
-  "/gallery/image1.jpg",
-  "/gallery/image2.jpg",
-  "/gallery/image3.jpg",
-  "/gallery/image4.jpg",
-  "/gallery/image5.jpg",
-  "/gallery/image6.jpg",
-  "/gallery/image7.jpg",
-  "/gallery/image8.jpg"
+  "/achievements/image1.jpg",
+  "/achievements/image2.jpg",
+  "/achievements/image3.jpg",
+  "/achievements/image4.jpg",
+  "/achievements/image5.jpg",
+  "/achievements/image6.jpg",
+  "/achievements/image7.jpg",
+  "/achievements/image8.jpg"
 ];
 
-const Gallery = () => {
+const Achievements = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   // Lock body scroll when lightbox is open
@@ -31,8 +31,8 @@ const Gallery = () => {
   const closeLightbox = () => setSelectedImage(null);
 
   return (
-    <section className="gallery-section section" id="gallery">
-      <div className="container gallery-container">
+    <section className="achievements-section section" id="achievements">
+      <div className="container achievements-container">
         <div className="section-header">
           <motion.h2 
             className="gradient-text"
@@ -41,7 +41,7 @@ const Gallery = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
           >
-            Our Gallery
+            Our Achievements
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -53,20 +53,20 @@ const Gallery = () => {
           </motion.p>
         </div>
 
-        <div className="gallery-grid">
+        <div className="achievements-grid">
           {images.map((img, index) => (
             <motion.div 
               key={index} 
-              className="gallery-item-wrapper"
+              className="achievements-item-wrapper"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ delay: (index % 4) * 0.1, duration: 0.5 }}
               onClick={() => setSelectedImage(img)}
             >
-              <div className="gallery-item">
-                <img src={img} alt={`Gallery ${index + 1}`} loading="lazy" />
-                <div className="gallery-overlay">
+              <div className="achievements-item">
+                <img src={img} alt={`Achievement ${index + 1}`} loading="lazy" />
+                <div className="achievements-overlay">
                   <span>View</span>
                 </div>
               </div>
@@ -105,4 +105,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default Achievements;

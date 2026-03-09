@@ -29,6 +29,7 @@
 .contact-info h3 {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: #ffffff;
 }
 
 .contact-desc {
@@ -145,6 +146,23 @@
   margin-top: 1rem;
   width: auto;
   align-self: flex-start;
+  background-color: #e50914;
+  color: #ffffff;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+  background-color: #ff1a25;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
 }
 
 @media (max-width: 992px) {

@@ -9,6 +9,7 @@ const AddStudent = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    gender: "",
     guardianName: "",
     guardianPhone: "",
     batch: "",
@@ -29,6 +30,7 @@ const AddStudent = () => {
       await addDoc(collection(db, "students"), {
         name: formData.name,
         phone: formData.phone,
+        gender: formData.gender,
         guardianName: formData.guardianName,
         guardianPhone: formData.guardianPhone,
         batch: formData.batch,
@@ -84,6 +86,17 @@ const AddStudent = () => {
                     placeholder="Enter 10-digit number"
                     className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
+                </div>
+                <div className="space-y-1.5 md:col-span-2">
+                  <label className="block text-sm font-semibold text-gray-700">Gender *</label>
+                  <select
+                    name="gender" required value={formData.gender} onChange={handleChange}
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)] appearance-none"
+                  >
+                    <option value="" disabled>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
                 </div>
               </div>
             </div>
