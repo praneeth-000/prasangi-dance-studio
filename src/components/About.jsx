@@ -39,7 +39,7 @@ return ( <section className="about-section section" id="about"> <div className="
       </p>
 
       <p className="mt-4 text-gray-100 drop-shadow-sm leading-relaxed">
-        This dance studio is officially certified and licensed. Click the <a href="/public/license.jpg" target="_blank" rel="noopener noreferrer" className="text-pink-500 underline font-bold hover:text-pink-400 transition-colors">License</a> to view.
+        This dance studio is officially certified and licensed. Click the <a href="/license.jpg" target="_blank" rel="noopener noreferrer" className="text-pink-500 underline font-bold hover:text-pink-400 transition-colors">License</a> to view.
       </p>
 
     </motion.div>
