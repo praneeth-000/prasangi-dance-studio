@@ -2,6 +2,7 @@ import { Suspense, useRef, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
+import { Link } from "react-router-dom";
 import "./Hero.css";
 
 // ======================
@@ -65,9 +66,9 @@ function Hero() {
         <p className="tagline">Where Passion Meets Performance.</p>
         <p className="location">Jammikunta</p>
 
-        <a href="#contact" className="primary-btn">
+        <Link to="/contact" className="primary-btn">
           Contact Master
-        </a>
+        </Link>
       </div>
 
       <div className="hero-image-container">
