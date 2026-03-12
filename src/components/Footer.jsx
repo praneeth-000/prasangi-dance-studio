@@ -42,12 +42,16 @@ const Footer = () => {
         </div>
 
         <div className="footer-col">
-          <h3>Newsletter</h3>
-          <p className="footer-desc">Subscribe to get the latest updates and offers.</p>
-          <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Your email address" required />
-            <button type="submit" className="btn btn-primary">Subscribe</button>
-          </form>
+          <h3>Student Achievements</h3>
+          <p className="footer-desc">
+            Our students proudly perform in stage shows, competitions, and cultural events. 
+            Explore our achievements and memorable performances.
+          </p>
+          <div style={{ marginTop: '1rem' }}>
+            <Link to="/achievements" className="btn btn-primary" style={{ display: 'inline-block' }}>
+              View Achievements
+            </Link>
+          </div>
         </div>
       </div>
       

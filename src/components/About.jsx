@@ -14,8 +14,8 @@ return ( <section className="about-section section" id="about"> <div className="
     >
       <div className="about-image">
         <img 
-          src="/images/poster.jpg" 
-          alt="Prasangi Dance Studio Poster"
+          src="/about1.jpg" 
+          alt="N. Srilatha"
         />
       </div>
 
@@ -30,12 +30,19 @@ return ( <section className="about-section section" id="about"> <div className="
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay: 0.2 }}
     >
-      <h2 className="gradient-text">
-        About Prasangi Dance Studio & Fitness Center
+      <h2 className="text-3xl font-bold mb-2 gradient-text">
+        N. Srilatha
       </h2>
+      <p className="text-pink-400 font-medium mb-6">
+        Director of Prasangi Dance Studio and Fitness Center
+      </p>
 
-      <p className="text-gray-100 drop-shadow-sm leading-relaxed">
-        Prasangi Dance Studio and Fitness Center is a vibrant space dedicated to nurturing talent, creativity, and confidence through dance and fitness. Located in Jammikunta, our studio offers professional training in classical and modern dance styles for students of all age groups. From the elegance of Kuchipudi and Bharatanatyam to the energy of Hip Hop and Break Dance, we blend tradition with contemporary expression.
+      <p className="text-gray-200 drop-shadow-sm leading-relaxed mb-4">
+        Welcome to Prasangi Dance Studio and Fitness Center. Our goal is to inspire students to discover their passion for dance while building confidence, discipline, and creativity. We provide professional training in a supportive environment where every student can grow and express themselves through movement.
+      </p>
+
+      <p className="text-gray-200 drop-shadow-sm leading-relaxed mb-6">
+        At Prasangi Dance Studio, we focus on both artistic expression and physical fitness. Our team of experienced instructors works closely with students to help them develop strong dance techniques and stage confidence. We believe that dance is not just an art form but also a powerful way to stay healthy, active, and motivated.
       </p>
 
       <p className="mt-4 text-gray-100 drop-shadow-sm leading-relaxed">
