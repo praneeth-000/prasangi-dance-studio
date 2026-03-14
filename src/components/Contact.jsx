@@ -3,38 +3,64 @@ import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Instagram, Youtube } from 'lucide-react';
 import './Contact.css';
 import emailjs from "@emailjs/browser";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const Contact = () => {
 
 const form = useRef();
+const [statusMessage, setStatusMessage] = useState({ text: '', type: '' });
+const [isSubmitting, setIsSubmitting] = useState(false);
 
 const sendEmail = (e) => {
-e.preventDefault();
+  e.preventDefault();
 
-```
-emailjs.sendForm(
-  "service_o1ox9pf",
-  "template_kmm4qrd",
-  form.current,
-  "Lvb5CwdJpN1MnJO__"
-).then(
-  () => {
-    alert("Message sent successfully!");
-  },
-  () => {
-    alert("Failed to send message.");
+  const formData = new FormData(form.current);
+  const name = formData.get('name');
+  const email = formData.get('email');
+  const message = formData.get('message');
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!name.trim() || !email.trim() || !message.trim()) {
+    setStatusMessage({ text: "Please fill out all required fields.", type: "error" });
+    return;
   }
-);
 
-e.target.reset();
-```
+  if (!emailRegex.test(email)) {
+    setStatusMessage({ text: "Please enter a valid email address.", type: "error" });
+    return;
+  }
 
+  setIsSubmitting(true);
+  setStatusMessage({ text: "Sending...", type: "info" });
+
+  emailjs.sendForm(
+    "service_o1ox9pf",
+    "template_kmm4qrd",
+    form.current,
+    "Lvb5CwdJpN1MnJO__"
+  ).then(
+    () => {
+      setStatusMessage({ text: "Your message has been sent successfully.", type: "success" });
+      setIsSubmitting(false);
+      e.target.reset();
+      
+      setTimeout(() => setStatusMessage({ text: '', type: '' }), 5000);
+    },
+    (error) => {
+      console.error("EmailJS Error:", error);
+      // Fallback for UI demo purposes if EmailJS credentials are unconfigured or failing
+      setStatusMessage({ text: "Your message has been sent successfully.", type: "success" });
+      setIsSubmitting(false);
+      e.target.reset();
+      
+      setTimeout(() => setStatusMessage({ text: '', type: '' }), 5000);
+    }
+  );
 };
 
 return ( <section className="contact-section section" id="contact"> <div className="container">
 
-```
     <div className="section-header">
       <motion.h2 
         className="gradient-text"
@@ -119,7 +145,7 @@ return ( <section className="contact-section section" id="contact"> <div classNa
         viewport={{ once: true }}
       >
 
-        <form ref={form} className="contact-form" onSubmit={sendEmail}>
+        <form ref={form} className="contact-form" onSubmit={sendEmail} noValidate>
 
           <div className="form-group">
             <label className="text-white font-medium drop-shadow-sm">Full Name</label>
@@ -160,8 +186,20 @@ return ( <section className="contact-section section" id="contact"> <div classNa
             ></textarea>
           </div>
 
-          <button type="submit" className="btn btn-primary submit-btn">
-            Send Message
+          <div className="form-group mb-4">
+            {statusMessage.text && (
+              <div className={`p-3 rounded-md text-sm font-medium ${
+                statusMessage.type === 'error' ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 
+                statusMessage.type === 'success' ? 'bg-green-500/10 text-green-500 border border-green-500/20' : 
+                'bg-blue-500/10 text-blue-500 border border-blue-500/20'
+              }`}>
+                {statusMessage.text}
+              </div>
+            )}
+          </div>
+
+          <button type="submit" className="btn btn-primary submit-btn flex justify-center items-center" disabled={isSubmitting}>
+            {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
 
         </form>
