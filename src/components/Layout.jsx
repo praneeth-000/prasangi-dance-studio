@@ -4,7 +4,6 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
 import InstagramButton from './InstagramButton';
-import ScrollTopButton from './ScrollTopButton';
 
 const Layout = () => {
   return (
@@ -16,7 +15,6 @@ const Layout = () => {
       <Footer />
       <WhatsAppButton />
       <InstagramButton />
-      <ScrollTopButton />
     </>
   );
 };
