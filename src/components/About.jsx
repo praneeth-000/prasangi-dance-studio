@@ -31,7 +31,7 @@ return ( <section className="about-section section" id="about"> <div className="
       transition={{ duration: 0.8, delay: 0.2 }}
     >
       <h2 className="text-3xl font-bold mb-2 gradient-text">
-        N. Srilatha
+        N.Srilatha
       </h2>
       <p className="text-pink-400 font-medium mb-6">
         Director of Prasangi Dance Studio and Fitness Center
