@@ -35,10 +35,10 @@ const sendEmail = (e) => {
   setStatusMessage({ text: "Sending...", type: "info" });
 
   emailjs.sendForm(
-    "service_o1ox9pf",
-    "template_kmm4qrd",
-    form.current,
-    "Lvb5CwdJpN1MnJO__"
+  "service_17wqllz",
+  "template_kmm4qrd",
+  form.current,
+  "Lvb5CwdJpN1MnJO__"
   ).then(
     () => {
       setStatusMessage({ text: "Your message has been sent successfully.", type: "success" });
