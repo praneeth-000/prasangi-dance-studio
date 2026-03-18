@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs, updateDoc, doc, addDoc } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, updateDoc, doc, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Users, UserCheck, AlertTriangle, UserX } from "lucide-react";
 
@@ -9,64 +9,65 @@ const Dashboard = () => {
     total: 0,
     active: 0,
     expiringSoon: 0,
-    expired: 0
+    expired: 0,
+    revenue: 0
   });
 
   const [expiringList, setExpiringList] = useState([]);
 
-  const loadStats = async () => {
-    const snapshot = await getDocs(collection(db, "students"));
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "students"), (snapshot) => {
+      let total = 0;
+      let active = 0;
+      let expiringSoon = 0;
+      let expired = 0;
+      let revenue = 0;
+      let expList = [];
 
-    let total = 0;
-    let active = 0;
-    let expiringSoon = 0;
-    let expired = 0;
-    let expList = [];
+      const today = new Date();
 
-    const today = new Date();
+      snapshot.docs.forEach((docSnap) => {
+        const student = docSnap.data();
+        
+        // Sum revenue dynamically from active students
+        const baseFee = Number(student.fee) || 0;
+        revenue += baseFee;
 
-    snapshot.docs.forEach(docSnap => {
-      const student = docSnap.data();
+        if (!student.expiryDate) return;
 
-      if (!student.expiryDate) return;
-
-      const expiry =
-        student.expiryDate.toDate
+        const expiry = student.expiryDate.toDate
           ? student.expiryDate.toDate()
           : new Date(student.expiryDate);
 
-      const diffDays = Math.ceil(
-        (expiry - today) / (1000 * 60 * 60 * 24)
-      );
+        const diffDays = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
 
-      total++;
+        total++;
 
-      if (diffDays < 0) {
-        expired++;
-      } else if (diffDays <= 7) {
-        expiringSoon++;
-      } else {
-        active++;
-      }
+        if (diffDays < 0) {
+          expired++;
+        } else if (diffDays <= 7) {
+          expiringSoon++;
+        } else {
+          active++;
+        }
 
-      if (diffDays <= 7) {
-        expList.push({
-          id: docSnap.id,
-          ...student,
-          daysLeft: diffDays,
-          expiryRaw: expiry,
-          expiryFormatted: expiry.toISOString().split("T")[0]
-        });
-      }
+        if (diffDays <= 7) {
+          expList.push({
+            id: docSnap.id,
+            ...student,
+            daysLeft: diffDays,
+            expiryRaw: expiry,
+            expiryFormatted: expiry.toISOString().split("T")[0]
+          });
+        }
+      });
+
+      expList.sort((a, b) => a.daysLeft - b.daysLeft);
+      setStats({ total, active, expiringSoon, expired, revenue });
+      setExpiringList(expList);
     });
 
-    expList.sort((a, b) => a.daysLeft - b.daysLeft);
-    setStats({ total, active, expiringSoon, expired });
-    setExpiringList(expList);
-  };
-
-  useEffect(() => {
-    loadStats();
+    return () => unsubscribe();
   }, []);
 
   const handleRenew = async (student) => {
@@ -83,8 +84,6 @@ const Dashboard = () => {
           amount: student.fee || 0,
           date: new Date()
         });
-
-        loadStats();
       } catch (error) {
         console.error("Error renewing student:", error);
         alert("Failed to renew student.");
@@ -93,6 +92,12 @@ const Dashboard = () => {
   };
 
   const cards = [
+    {
+      title: "Total Revenue",
+      value: `₹${stats.revenue.toLocaleString()}`,
+      icon: Users,
+      color: "bg-indigo-100 text-indigo-600"
+    },
     {
       title: "Total Students",
       value: stats.total,
@@ -131,7 +136,7 @@ const Dashboard = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
 
         {cards.map((card, index) => {
 

@@ -8,7 +8,8 @@ import {
   Search,
   Plus,
   Users,
-  RefreshCw
+  RefreshCw,
+  Send
 } from "lucide-react";
 
 import { db } from "../../firebase";
@@ -338,6 +339,31 @@ const Students = () => {
                           >
                             <RefreshCw size={16} />
                           </button>
+
+                          <a
+                            href={`https://wa.me/91${student.phone}?text=${encodeURIComponent(
+                            `Hello ${student.name},
+
+Welcome to Prasangi Dance Studio and Fitness Center
+
+You are successfully registered as a student.
+
+Please carry the following when you come to the studio:
+• Water bottle  
+• Handkerchief  
+• Shoes  
+
+We look forward to seeing you!
+
+Prasangi Dance Studio`
+                            )}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="p-2 text-teal-600 bg-teal-50 hover:bg-teal-100 rounded-lg transition-colors border border-teal-100/50"
+                            title="Send Welcome Message"
+                          >
+                            <Send size={16} />
+                          </a>
 
                           <a
                             href={`https://wa.me/91${student.phone}?text=${encodeURIComponent(

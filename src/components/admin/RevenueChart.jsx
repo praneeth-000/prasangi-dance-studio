@@ -21,9 +21,7 @@ const RevenueChart = () => {
   const [totals, setTotals] = useState({ month: 0, year: 0 });
 
   useEffect(() => {
-
-    const unsubscribe = onSnapshot(collection(db, "students"), async (studentsSnapshot) => {
-
+    const unsubscribe = onSnapshot(collection(db, "students"), (studentsSnapshot) => {
       const today = new Date();
       const currentYear = today.getFullYear();
       const currentMonth = today.getMonth();
@@ -36,8 +34,7 @@ const RevenueChart = () => {
         Jul: 0, Aug: 0, Sep: 0, Oct: 0, Nov: 0, Dec: 0
       };
 
-      for (const studentDoc of studentsSnapshot.docs) {
-
+      studentsSnapshot.docs.forEach((studentDoc) => {
         const student = studentDoc.data();
         const baseFee = Number(student.fee) || 0;
         
@@ -58,32 +55,7 @@ const RevenueChart = () => {
               currentMonthTotal += baseFee;
             }
         }
-
-        const paymentsSnapshot = await getDocs(
-          collection(db, "students", studentDoc.id, "payments")
-        );
-
-        paymentsSnapshot.docs.forEach(doc => {
-
-          const payment = doc.data();
-          if (!payment.date) return;
-
-          const pDate = payment.date.toDate ? payment.date.toDate() : new Date(payment.date);
-
-          if (pDate.getFullYear() === currentYear) {
-             const m = pDate.toLocaleString("default", { month: "short" });
-             if (months[m] !== undefined) {
-                months[m] += payment.amount;
-             }
-             currentYearTotal += payment.amount;
-             if (pDate.getMonth() === currentMonth) {
-                 currentMonthTotal += payment.amount;
-             }
-          }
-
-        });
-
-      }
+      });
 
       setTotals({ month: currentMonthTotal, year: currentYearTotal });
 
@@ -98,7 +70,6 @@ const RevenueChart = () => {
           }
         ]
       });
-
     });
 
     return () => unsubscribe();
