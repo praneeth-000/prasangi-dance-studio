@@ -14,6 +14,7 @@ const AddStudent = () => {
     guardianPhone: "",
     batch: "",
     fee: "",
+    pendingFee: "",
     startDate: "",
     expiryDate: "",
     notes: "",
@@ -35,6 +36,7 @@ const AddStudent = () => {
         guardianPhone: formData.guardianPhone,
         batch: formData.batch,
         fee: Number(formData.fee),
+        pendingFee: Number(formData.pendingFee) || 0,
         notes: formData.notes,
         startDate: Timestamp.fromDate(new Date(formData.startDate)),
         expiryDate: Timestamp.fromDate(new Date(formData.expiryDate)),
@@ -141,6 +143,14 @@ const AddStudent = () => {
                   <input
                     type="number" name="fee" required value={formData.fee} onChange={handleChange}
                     placeholder="e.g. 1500"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="block text-sm font-semibold text-gray-700">Pending Fees (₹)</label>
+                  <input
+                    type="number" name="pendingFee" value={formData.pendingFee} onChange={handleChange}
+                    placeholder="e.g. 500"
                     className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
                 </div>

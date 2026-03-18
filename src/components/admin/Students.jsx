@@ -231,6 +231,7 @@ const Students = () => {
                 <th className="px-6 py-4">Batch</th>
                 <th className="px-6 py-4">Phone</th>
                 <th className="px-6 py-4">Fee</th>
+                <th className="px-6 py-4">Pending Fee</th>
                 <th className="px-6 py-4">Dates</th>
                 <th className="px-6 py-4">Status</th>
                 <th className="px-6 py-4 text-right">Actions</th>
@@ -294,6 +295,10 @@ const Students = () => {
 
                       <td className="px-6 py-4 font-bold text-sm text-gray-900">
                         ₹{student.fee?.toLocaleString() || 0}
+                      </td>
+
+                      <td className="px-6 py-4 font-bold text-sm text-orange-600">
+                        ₹{student.pendingFee?.toLocaleString() || 0}
                       </td>
 
                       <td className="px-6 py-4 text-[13px] text-gray-500">

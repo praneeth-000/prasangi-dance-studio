@@ -14,6 +14,7 @@ const EditStudent = () => {
     guardianPhone: '',
     batch: '',
     fee: '',
+    pendingFee: '',
     startDate: '',
     expiryDate: '',
     notes: ''
@@ -45,6 +46,7 @@ const EditStudent = () => {
             guardianPhone: data.guardianPhone || '',
             batch: data.batch || '',
             fee: data.fee || '',
+            pendingFee: data.pendingFee || '',
             notes: data.notes || '',
             startDate: safeDateString(data.startDate),
             expiryDate: safeDateString(data.expiryDate),
@@ -80,6 +82,7 @@ const EditStudent = () => {
         guardianPhone: formData.guardianPhone || '',
         batch: formData.batch || '',
         fee: Number(formData.fee) || 0,
+        pendingFee: Number(formData.pendingFee) || 0,
         notes: formData.notes || ''
       };
 
@@ -158,6 +161,13 @@ const EditStudent = () => {
                 <label className="block text-sm font-semibold text-gray-700">Fee Amount (₹) *</label>
                 <input
                   type="number" name="fee" required value={formData.fee} onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label className="block text-sm font-semibold text-gray-700">Pending Fees (₹)</label>
+                <input
+                  type="number" name="pendingFee" value={formData.pendingFee} onChange={handleChange}
                   className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                 />
               </div>
