@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 function AdminLogin() {
 
@@ -8,14 +10,33 @@ function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (email === "admin@prasangi.com" && password === "admin123") {
-      localStorage.setItem("adminAuth", "true");
-      navigate("/admin");
-    } else {
-      alert("Invalid login credentials");
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      const allowedEmails = [
+        "prasangidancestudio@gmail.com",
+        "praneethmuriki@gmail.com"
+      ];
+
+      if (allowedEmails.includes(user.email)) {
+        localStorage.setItem("adminAuth", "true");
+        navigate("/admin");
+      } else {
+        await signOut(auth);
+        alert("Unauthorized user");
+      }
+    } catch (error) {
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-email') {
+        alert("Invalid email");
+      } else if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+        alert("Wrong password");
+      } else {
+        alert("Login failed: " + error.message);
+      }
     }
   };
 
@@ -56,10 +77,6 @@ function AdminLogin() {
           </button>
 
         </form>
-
-        <p className="text-xs text-gray-400 text-center mt-6">
-          admin@prasangi.com / admin123
-        </p>
 
       </div>
 
