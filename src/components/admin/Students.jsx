@@ -353,7 +353,7 @@ Please carry the following when you come to the studio:
 • Handkerchief  
 • Shoes  
 
-We look forward to seeing you!
+We look forward to seeing you in studio!
 
 Prasangi Dance Studio`
                             )}`}
