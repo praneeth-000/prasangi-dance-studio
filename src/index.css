@@ -28,8 +28,8 @@ html {
 /* Default body (neutral for admin panel) */
 body {
   font-family: var(--font-family);
-  background-color: #f3f4f6;
-  color: #111827;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }

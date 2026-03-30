@@ -56,11 +56,24 @@ function Dancer() {
 function Hero() {
   const isMobile = window.innerWidth < 768;
 
+  const renderAnimatedText = (text) => {
+    return text.split('').map((char, index) => (
+      <span
+        key={index}
+        className={`hover-char ${char === ' ' ? 'space' : ''}`}
+        style={{ '--char-index': index }}
+      >
+        {char}
+      </span>
+    ));
+  };
+
   return (
     <section id="home" className="hero">
       <div className="hero-content">
-        <h1 className="brand-title">
-          Prasangi Dance Studio <span>& Fitness Center</span>
+        <h1 className="brand-title animated-heading">
+          {renderAnimatedText("Prasangi Dance Studio ")}
+          <span className="fitness-text">& Fitness Center</span>
         </h1>
 
         <p className="tagline">Where Passion Meets Performance.</p>
@@ -83,6 +96,8 @@ function Hero() {
             enableZoom={false}
             enablePan={false}
             enableRotate={true}
+            autoRotate={true}
+            autoRotateSpeed={0.8}
             minPolarAngle={Math.PI / 2}
             maxPolarAngle={Math.PI / 2}
           />

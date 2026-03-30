@@ -1,9 +1,12 @@
+import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import './index.css'
 import Revenue from "./components/admin/Revenue";
 
-// Layout
+// Layout & Loader
 import Layout from './components/Layout'
+import Loader from './components/Loader'
 
 // Pages
 import Home from './pages/Home'
@@ -23,9 +26,22 @@ import EditStudent from './components/admin/EditStudent'
 import PaymentHistory from './components/admin/PaymentHistory'
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Routes>
+    <>
+      <AnimatePresence>
+        {isLoading && <Loader />}
+      </AnimatePresence>
+      <BrowserRouter>
+        <Routes>
         {/* Main Website Routes */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -48,6 +64,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </>
   )
 }
 

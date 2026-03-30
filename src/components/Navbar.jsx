@@ -1,9 +1,21 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'
 
 function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="flex items-center gap-3">
         <Link to="/">
           <img

@@ -1,8 +1,11 @@
-import { Outlet, Navigate, NavLink } from "react-router-dom";
+import { Outlet, Navigate, NavLink, useLocation } from "react-router-dom";
 import { Users, UserPlus, LayoutDashboard, LogOut } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
+import PageTransition from "../PageTransition";
 
 function AdminLayout() {
   const isAuthenticated = localStorage.getItem("adminAuth");
+  const location = useLocation();
 
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" />;
@@ -80,7 +83,11 @@ function AdminLayout() {
 
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-auto">
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <PageTransition key={location.pathname}>
+            <Outlet />
+          </PageTransition>
+        </AnimatePresence>
       </main>
 
     </div>
