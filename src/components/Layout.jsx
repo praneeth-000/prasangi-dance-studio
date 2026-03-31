@@ -7,15 +7,21 @@ import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
 import InstagramButton from './InstagramButton';
 
+import ErrorBoundary from './ErrorBoundary';
+
 const Layout = () => {
   const location = useLocation();
   return (
     <>
       <Navbar />
-      <main className="main-content" style={{ minHeight: '100vh', paddingTop: '80px' }}>
-        <AnimatePresence mode="wait">
+      <main className="main-content w-full flex flex-col flex-1 relative min-h-screen" style={{ paddingTop: '80px', overflowX: 'hidden' }}>
+        <AnimatePresence mode="wait" initial={false}>
           <PageTransition key={location.pathname}>
-            <Outlet />
+            <ErrorBoundary>
+              <div className="page-wrapper w-full h-full pb-10">
+                <Outlet />
+              </div>
+            </ErrorBoundary>
           </PageTransition>
         </AnimatePresence>
       </main>

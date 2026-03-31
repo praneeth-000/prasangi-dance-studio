@@ -7,6 +7,7 @@ import Revenue from "./components/admin/Revenue";
 // Layout & Loader
 import Layout from './components/Layout'
 import Loader from './components/Loader'
+import ScrollToTop from './components/ScrollToTop'
 
 // Pages
 import Home from './pages/Home'
@@ -41,6 +42,7 @@ function App() {
         {isLoading && <Loader />}
       </AnimatePresence>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
         {/* Main Website Routes */}
         <Route path="/" element={<Layout />}>

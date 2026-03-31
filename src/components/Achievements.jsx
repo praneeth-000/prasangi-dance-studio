@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Achievements.css';
 
-const images = [
+const achievementImages = [
   "/achievements/image1.jpg",
   "/achievements/image2.jpg",
   "/achievements/image3.jpg",
@@ -13,8 +13,15 @@ const images = [
   "/achievements/image8.jpg"
 ];
 
+const newsImages = [
+  "/achievements/image7.jpg",
+  "/achievements/image8.jpg",
+  "/achievements/image1.jpg"
+];
+
 const Achievements = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [activeTab, setActiveTab] = useState('achievements');
 
   // Lock body scroll when lightbox is open
   useEffect(() => {
@@ -30,6 +37,8 @@ const Achievements = () => {
 
   const closeLightbox = () => setSelectedImage(null);
 
+  const currentGallery = activeTab === 'achievements' ? achievementImages : newsImages;
+
   return (
     <section className="achievements-section section" id="achievements">
       <div className="container achievements-container">
@@ -41,7 +50,7 @@ const Achievements = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
           >
-            Our Achievements
+            Our Gallery
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -49,29 +58,51 @@ const Achievements = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            Glimpses of energy, passion, and perfection from our studio.
+            Discover latest updates, events and glimpses of energy from our studio.
           </motion.p>
         </div>
 
-        <div className="achievements-grid">
-          {images.map((img, index) => (
-            <motion.div 
-              key={index} 
-              className="achievements-item-wrapper"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ delay: (index % 4) * 0.1, duration: 0.5 }}
-              onClick={() => setSelectedImage(img)}
-            >
-              <div className="achievements-item">
-                <img src={img} alt={`Achievement ${index + 1}`} loading="lazy" />
-                <div className="achievements-overlay">
-                  <span>View</span>
+        {/* Custom Tabs Slider */}
+        <div className="flex justify-center items-center mb-10 w-full relative z-10 px-4">
+          <div className="bg-gray-800/40 p-1 rounded-full flex gap-1 relative backdrop-blur-md border border-gray-700/50 max-w-[400px] w-full mx-auto">
+            {['achievements', 'news'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`relative flex-1 py-3 text-sm md:text-base font-semibold transition-colors z-20 rounded-full capitalize ${
+                  activeTab === tab ? "text-white" : "text-gray-400 hover:text-white"
+                }`}
+              >
+                {activeTab === tab && (
+                  <div className="absolute inset-0 bg-red-600 rounded-full -z-10 shadow-[0_0_15px_rgba(220,38,38,0.5)] transition-all" />
+                )}
+                {tab}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="achievements-grid-wrapper w-full relative min-h-[400px] py-4">
+          <div className="achievements-grid" key={activeTab}>
+            {(currentGallery || []).map((img, index) => {
+              if (!img) return null; // Safe check for undefined images
+              return (
+                <div 
+                  key={img + index} 
+                  className="achievements-item-wrapper animate-in fade-in zoom-in duration-500 fill-mode-both"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                  onClick={() => setSelectedImage(img)}
+                >
+                  <div className="achievements-item">
+                    <img src={img} alt={`${activeTab} ${index + 1}`} loading="lazy" />
+                    <div className="achievements-overlay">
+                      <span>View</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </div>
 

@@ -75,9 +75,6 @@
 @media (max-width: 768px) {
   .navbar {
     padding: 12px 5%;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
   }
 
   .navbar.scrolled {
