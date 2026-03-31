@@ -12,13 +12,13 @@ const Layout = () => {
   return (
     <>
       <Navbar />
-      <div className="main-content" style={{ minHeight: '100vh', paddingTop: '80px' }}>
+      <main className="main-content" style={{ minHeight: '100vh', paddingTop: '80px' }}>
         <AnimatePresence mode="wait">
           <PageTransition key={location.pathname}>
             <Outlet />
           </PageTransition>
         </AnimatePresence>
-      </div>
+      </main>
       <Footer />
       <WhatsAppButton />
       <InstagramButton />
