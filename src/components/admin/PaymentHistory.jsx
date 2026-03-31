@@ -146,7 +146,7 @@ const PaymentHistory = () => {
                   placeholder="e.g. July 2025"
                   value={month}
                   onChange={(e) => setMonth(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                 />
               </div>
 
@@ -160,13 +160,13 @@ const PaymentHistory = () => {
                   placeholder={`e.g. ${student.fee}`}
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-2.5 mt-2 bg-emerald-600 text-white font-semibold rounded-xl hover:bg-emerald-700 active:scale-[0.98] transition-all shadow-sm flex items-center justify-center gap-2"
+                className="w-full py-2.5 mt-2 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 active:scale-[0.98] transition-all shadow-sm flex items-center justify-center gap-2"
               >
                 <CreditCard size={16} /> Save Record
               </button>

@@ -2,6 +2,7 @@ import { Outlet, Navigate, NavLink, useLocation } from "react-router-dom";
 import { Users, UserPlus, LayoutDashboard, LogOut } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import PageTransition from "../PageTransition";
+import "./Admin.css";
 
 function AdminLayout() {
   const isAuthenticated = localStorage.getItem("adminAuth");
@@ -12,7 +13,7 @@ function AdminLayout() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100 text-gray-900 admin-layout">
 
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r flex flex-col">
@@ -59,7 +60,7 @@ function AdminLayout() {
         </nav>
         <a
           href="/"
-          className="flex items-center justify-center gap-2 bg-gray-200 text-gray-800 px-3 py-2 rounded w-full mb-3 hover:bg-gray-300"
+          className="flex items-center justify-center gap-2 bg-gray-200 text-gray-900 px-3 py-2 rounded w-full mb-3 hover:bg-gray-300 transition-colors"
         >
           ← Go to Website
         </a>

@@ -200,13 +200,13 @@ const EditStudent = () => {
           <div className="px-6 md:px-8 py-5 bg-gray-50/50 flex items-center justify-end gap-3 rounded-b-[20px]">
             <button
               type="button" onClick={() => navigate('/admin/students')}
-              className="px-5 py-2.5 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:text-gray-900 transition-all shadow-sm"
+              className="px-5 py-2.5 text-sm font-semibold text-gray-900 bg-gray-200 rounded-xl hover:bg-gray-300 transition-all shadow-sm"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-6 py-2.5 text-sm font-semibold text-white bg-indigo-600 border border-transparent rounded-xl shadow-sm hover:shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all active:scale-[0.98]"
+              className="px-6 py-2.5 text-sm font-semibold text-white bg-blue-600 border border-transparent rounded-xl shadow-sm hover:shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all active:scale-[0.98]"
             >
               Save Changes
             </button>

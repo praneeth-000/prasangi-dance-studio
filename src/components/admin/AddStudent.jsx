@@ -78,7 +78,7 @@ const AddStudent = () => {
                   <input
                     type="text" name="name" required value={formData.name} onChange={handleChange}
                     placeholder="Enter full name"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -86,7 +86,7 @@ const AddStudent = () => {
                   <input
                     type="tel" name="phone" required value={formData.phone} onChange={handleChange}
                     placeholder="Enter 10-digit number"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
                 </div>
                 <div className="space-y-1.5 md:col-span-2">
@@ -112,7 +112,7 @@ const AddStudent = () => {
                   <input
                     type="text" name="guardianName" value={formData.guardianName} onChange={handleChange}
                     placeholder="Parent or Guardian"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -120,7 +120,7 @@ const AddStudent = () => {
                   <input
                     type="tel" name="guardianPhone" value={formData.guardianPhone} onChange={handleChange}
                     placeholder="Alternate number"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
                 </div>
               </div>
@@ -135,7 +135,7 @@ const AddStudent = () => {
                   <input
                     type="text" name="batch" required value={formData.batch} onChange={handleChange}
                     placeholder="e.g. Hip Hop Morning"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -143,7 +143,7 @@ const AddStudent = () => {
                   <input
                     type="number" name="fee" required value={formData.fee} onChange={handleChange}
                     placeholder="e.g. 1500"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -151,21 +151,21 @@ const AddStudent = () => {
                   <input
                     type="number" name="pendingFee" value={formData.pendingFee} onChange={handleChange}
                     placeholder="e.g. 500"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
                 </div>
                 <div className="space-y-1.5">
                   <label className="block text-sm font-semibold text-gray-700">Start Date *</label>
                   <input
                     type="date" name="startDate" required value={formData.startDate} onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
                 </div>
                 <div className="space-y-1.5">
                   <label className="block text-sm font-semibold text-gray-700">Expiry Date *</label>
                   <input
                     type="date" name="expiryDate" required value={formData.expiryDate} onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
                   />
                 </div>
               </div>
@@ -175,7 +175,7 @@ const AddStudent = () => {
                 <textarea
                   name="notes" rows="3" value={formData.notes} onChange={handleChange}
                   placeholder="Any medical conditions or special instructions..."
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)] resize-y min-h-[100px]"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 placeholder-gray-500 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm shadow-[0_1px_2px_rgba(0,0,0,0.02)] resize-y min-h-[100px]"
                 ></textarea>
               </div>
             </div>
@@ -185,13 +185,13 @@ const AddStudent = () => {
             <button
               type="button"
               onClick={() => navigate("/admin/students")}
-              className="px-5 py-2.5 text-sm font-semibold text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:text-gray-900 transition-all shadow-sm"
+              className="px-5 py-2.5 text-sm font-semibold text-gray-900 bg-gray-200 rounded-xl hover:bg-gray-300 transition-all shadow-sm"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-6 py-2.5 text-sm font-semibold text-white bg-gray-900 border border-transparent rounded-xl shadow-sm hover:shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all active:scale-[0.98]"
+              className="px-6 py-2.5 text-sm font-semibold text-white bg-blue-600 border border-transparent rounded-xl shadow-sm hover:shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all active:scale-[0.98]"
             >
               Confirm Registration
             </button>

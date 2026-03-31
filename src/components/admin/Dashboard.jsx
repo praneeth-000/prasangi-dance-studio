@@ -197,7 +197,7 @@ const Dashboard = () => {
 
                 <button
                   onClick={() => handleRenew(student)}
-                  className="mt-2 sm:mt-0 px-4 py-2 bg-indigo-50 text-indigo-600 font-medium rounded-lg hover:bg-indigo-100 transition-colors text-sm border border-indigo-100"
+                  className="mt-2 sm:mt-0 px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors text-sm shadow-sm"
                 >
                   Renew
                 </button>

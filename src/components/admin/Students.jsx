@@ -174,14 +174,14 @@ const Students = () => {
               placeholder="Search students..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none text-sm bg-white shadow-sm transition-all"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none text-sm bg-white text-gray-900 placeholder-gray-500 shadow-sm transition-all"
             />
 
           </div>
 
           <Link
             to="/admin/students/add"
-            className="flex items-center gap-2 px-4 py-2.5 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-800 transition-colors shadow-sm text-sm"
+            className="flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-colors shadow-sm text-sm"
           >
             <Plus size={18} /> Add Student
           </Link>
@@ -198,7 +198,7 @@ const Students = () => {
             onClick={() => setActiveFilter(batchName)}
             className={`px-4 py-2 rounded-full text-[13px] font-semibold transition-all shadow-sm ${
               activeFilter === batchName
-                ? "bg-gray-900 text-white"
+                ? "bg-blue-600 text-white"
                 : "bg-white text-gray-600 border border-gray-200 hover:border-gray-300 hover:text-gray-900"
             }`}
           >
