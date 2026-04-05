@@ -10,13 +10,24 @@ const achievementImages = [
   "/achievements/image5.jpg",
   "/achievements/image6.jpg",
   "/achievements/image7.jpg",
-  "/achievements/image8.jpg"
+  "/achievements/image15.jpg",
+  "/achievements/image16.jpg"
+
 ];
 
 const newsImages = [
-  "/achievements/image7.jpg",
-  "/achievements/image8.jpg",
-  "/achievements/image1.jpg"
+  "/achievements/image9.jpg",
+  "/achievements/image10.jpg",
+  "/achievements/image11.jpg",
+  "/achievements/image12.jpg",
+  "/achievements/image13.jpg",
+  "/achievements/image14.jpg",
+  "/achievements/image17.jpg",
+  "/achievements/image18.jpg",
+  "/achievements/image19.jpg",
+  "/achievements/image20.jpg"
+
+
 ];
 
 const Achievements = () => {
