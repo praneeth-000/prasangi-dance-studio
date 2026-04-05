@@ -57,13 +57,31 @@ function Hero() {
   const isMobile = window.innerWidth < 768;
 
   const renderAnimatedText = (text) => {
-    return text.split('').map((char, index) => (
-      <span
-        key={index}
-        className={`hover-char ${char === ' ' ? 'space' : ''}`}
-        style={{ '--char-index': index }}
-      >
-        {char}
+    let charIndex = 0;
+    // Group characters into words to prevent breaking mid-word (like St-udio)
+    return text.split(' ').map((word, wordIndex, array) => (
+      <span key={wordIndex} className="word-wrapper" style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+        {word.split('').map((char) => {
+          const currentIndex = charIndex++;
+          return (
+            <span
+              key={currentIndex}
+              className="hover-char"
+              style={{ '--char-index': currentIndex }}
+            >
+              {char}
+            </span>
+          );
+        })}
+        {wordIndex < array.length - 1 && (
+          <span
+            key={`space-${wordIndex}`}
+            className="hover-char space"
+            style={{ '--char-index': charIndex++ }}
+          >
+            {' '}
+          </span>
+        )}
       </span>
     ));
   };
