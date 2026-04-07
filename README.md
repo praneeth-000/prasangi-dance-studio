@@ -42,7 +42,8 @@ The goal of this project was to create a visually engaging and user-friendly pla
 
 You can view the live website here:
 
-https://prasangi-dance-studio.vercel.app
+https://www.prasangidancestudio.com/
+
 
 ---
 
