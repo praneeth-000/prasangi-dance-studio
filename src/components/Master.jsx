@@ -24,6 +24,26 @@ function Master() {
             </div>
           </div>
 
+          
+          {/* Master 5 - Dipashree Paul */}
+          <div className="master-container w-full bg-black/40 p-8 rounded-2xl backdrop-blur-sm border border-white/10">
+            <div className="master-image">
+              <img
+                src="/master5.jpg"
+                alt="Dipashree Paul"
+                className="w-full aspect-square object-cover rounded-xl shadow-lg max-w-sm"
+              />
+            </div>
+
+            <div className="master-content text-left">
+              <h2 className="text-3xl font-bold mb-2 gradient-text">Dipashree Paul</h2>
+              <p className="text-pink-400 font-medium mb-4">Yoga Instructor</p>
+              <p className="text-gray-200 leading-relaxed max-w-2xl">
+                I am a 300-hours YIC certified yoga instructor , guiding students through Hatha yoga blended with intuitive flow.My approach to yoga goes beyond physical postures. I believe yoga is a practice of awareness—of slowing down, listening to your body, and reconnecting with your inner self.
+              </p>
+            </div>
+          </div>
+
           {/* Master 3 - Rajesh K */}
           <div className="master-container w-full bg-black/40 p-8 rounded-2xl backdrop-blur-sm border border-white/10">
             <div className="master-image">
@@ -80,6 +100,7 @@ function Master() {
               </p>
             </div>
           </div>
+
 
 
 
